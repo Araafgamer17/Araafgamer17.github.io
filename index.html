@@ -3,44 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARAAFGAMER17 | Official Site</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>ARAAFGAMER17 // TERMINAL</title>
+    <style>
+        :root {
+            --neon-green: #00ff41;
+            --dark-bg: #0a0a0a;
+            --glitch-red: #ff003c;
+            --glitch-blue: #00f0ff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--neon-green);
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Rain Canvas */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Scanline Overlay */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 3px 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .header-box {
+            border: 2px solid var(--neon-green);
+            padding: 20px;
+            display: inline-block;
+            box-shadow: 0 0 15px var(--neon-green);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin: 10px 0;
+            letter-spacing: 5px;
+            position: relative;
+        }
+
+        .status-line {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        /* Glitch Animation */
+        .glitch:hover {
+            animation: glitch 0.2s infinite;
+            text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-blue);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            25% { transform: translate(-2px, 2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-1px, -1px); }
+            100% { transform: translate(0); }
+        }
+
+        .nav-links {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 10px 30px;
+            width: 250px;
+            transition: all 0.3s;
+            background: transparent;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        .btn-red {
+            border-color: #ff0000;
+            color: #ff0000;
+        }
+
+        .btn-red:hover {
+            background: #ff0000;
+            color: white;
+            box-shadow: 0 0 20px #ff0000;
+        }
+
+        .video-container {
+            margin-top: 50px;
+            border: 1px solid #333;
+            background: #000;
+            padding: 10px;
+        }
+
+        footer {
+            margin-top: 100px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="glow-sphere"></div>
+    <canvas id="matrix"></canvas>
+    <div class="scanlines"></div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <p class="pre-title">SYSTEM ONLINE // USER: ARAAFGAMER17</p>
+    <div class="container">
+        <div class="header-box">
+            <div class="status-line">SYSTEM: ONLINE // USER: ARAAFGAMER17</div>
             <h1 class="glitch">ARAAFGAMER17</h1>
-            <p class="tagline">Developer <span class="separator">|</span> Gamer <span class="separator">|</span> Creator</p>
-            
-            <div class="hero-buttons">
-                <a href="https://youtube.com/@araafgamer17" class="btn-youtube" target="_blank">▶ VISIT CHANNEL</a>
-                <a href="https://github.com/Araafgamer17" class="btn-secondary">GITHUB REPOS</a>
-            </div>
-
-            <div class="status-badge">
-                <span class="dot"></span> <span class="pixel-text">LEVEL 17 ACHIEVED</span>
-            </div>
+            <p>DEVELOPER | GAMER | CREATOR</p>
         </div>
-    </section>
 
-    <section class="video-section">
-        <h2 class="section-title">FEATURED CONTENT</h2>
+        <div class="nav-links">
+            <a href="https://youtube.com/@araafgamer17" class="btn btn-red">> VISIT_CHANNEL.EXE</a>
+            <a href="https://github.com/Araafgamer17" class="btn">> GITHUB_REPOS</a>
+            <div style="margin-top: 10px;">[ LEVEL 17 ACHIEVED ]<span class="cursor">_</span></div>
+        </div>
+
         <div class="video-container">
-            <!-- Fixed Embed Link -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed?listType=user_uploads&list=araafgamer17" frameborder="0" allowfullscreen></iframe>
+            <h3>// FEATURED_CONTENT</h3>
+            <!-- Replace YOUR_VIDEO_ID with your actual YouTube video ID -->
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
         </div>
-    </section>
 
-    <!-- Minecraft Style Footer -->
-    <div class="mc-border"></div>
-    <footer>
-        <p>ARAAFGAMER17 &copy; 2026 // ALL SYSTEMS GO</p>
-    </footer>
+        <footer>
+            ARAAFGAMER17 © 2026 // ALL_SYSTEMS_GO
+        </footer>
+    </div>
 
+    <script>
+        // Matrix Rain Logic
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#00ff41";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 33);
+    </script>
 </body>
-</html>
+    </html>
+    
