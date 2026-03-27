@@ -8,138 +8,74 @@
         :root {
             --neon-green: #00ff41;
             --dark-bg: #050505;
-            --glitch-red: #ff003c;
-            --glitch-blue: #00f0ff;
             --ui-border: rgba(0, 255, 65, 0.3);
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: var(--dark-bg);
             color: var(--neon-green);
             font-family: 'Courier New', Courier, monospace;
             overflow-x: hidden;
         }
 
-        /* Matrix Rain Background */
-        #matrix {
-            position: fixed;
-            top: 0; left: 0;
-            z-index: -1;
-            opacity: 0.2;
-        }
+        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
 
-        /* Scanline & Flicker Effect */
         .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 3px, 3px 100%;
-            pointer-events: none;
-            z-index: 10;
-            animation: flicker 0.15s infinite;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 3px; pointer-events: none; z-index: 10;
         }
 
-        @keyframes flicker {
-            0% { opacity: 0.9; }
-            100% { opacity: 1; }
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 30px 15px; text-align: center; }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        /* Header UI */
         .terminal-header {
             border: 1px solid var(--ui-border);
-            padding: 25px;
-            background: rgba(0, 10, 0, 0.85);
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-            position: relative;
+            padding: 20px;
+            background: rgba(0, 10, 0, 0.8);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+            margin-bottom: 30px;
         }
 
-        .terminal-header::before {
-            content: "SYSTEM_STATUS: ENCRYPTED";
-            position: absolute;
-            top: -10px; left: 10px;
-            background: var(--dark-bg);
-            padding: 0 5px;
-            font-size: 10px;
-        }
+        h1 { font-size: 2.5rem; letter-spacing: 5px; margin: 10px 0; text-shadow: 0 0 8px var(--neon-green); }
 
-        h1 {
-            font-size: clamp(1.5rem, 8vw, 3rem);
-            margin: 10px 0;
-            letter-spacing: 4px;
-            text-shadow: 0 0 10px var(--neon-green);
-        }
-
-        /* Buttons */
         .nav-grid {
-            margin: 30px 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px;
         }
 
         .btn {
-            text-decoration: none;
-            color: var(--neon-green);
-            border: 1px solid var(--neon-green);
-            padding: 12px;
-            font-weight: bold;
-            transition: 0.2s;
-            background: rgba(0, 20, 0, 0.5);
-            display: block;
+            text-decoration: none; color: var(--neon-green); border: 1px solid var(--neon-green);
+            padding: 10px; font-weight: bold; background: rgba(0, 20, 0, 0.5);
         }
 
-        .btn:hover {
-            background: var(--neon-green);
-            color: #000;
-            box-shadow: 0 0 15px var(--neon-green);
-            transform: scale(1.02);
+        .btn:hover { background: var(--neon-green); color: #000; box-shadow: 0 0 15px var(--neon-green); }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        /* Video Frame */
         .video-module {
             border: 1px solid var(--ui-border);
-            padding: 15px;
+            padding: 10px;
             background: #000;
-            margin-top: 20px;
-        }
-
-        .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
         }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            filter: sepia(20%) hue-rotate(80deg) brightness(1.1);
+        .video-module::before {
+            content: "SECURE_STREAM_LN";
+            position: absolute; top: -10px; left: 10px;
+            background: var(--dark-bg); padding: 0 5px; font-size: 10px;
         }
 
-        .glitch-text:hover {
-            animation: glitch-anim 0.3s infinite;
-        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        @keyframes glitch-anim {
-            0% { transform: skew(2deg); text-shadow: 2px 0 red; }
-            50% { transform: skew(-2deg); text-shadow: -2px 0 blue; }
-            100% { transform: skew(0); }
-        }
-
-        footer {
-            margin-top: 50px;
-            font-size: 12px;
-            opacity: 0.6;
-        }
+        footer { margin-top: 50px; font-size: 12px; opacity: 0.6; padding-bottom: 20px; }
+        .cursor { animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
@@ -149,9 +85,9 @@
 
     <div class="container">
         <header class="terminal-header">
-            <div style="font-size: 12px;">ID: ARAAFGAMER17 // LVL: 17</div>
-            <h1 class="glitch-text">ARAAFGAMER17</h1>
-            <p>> DEVELOPER | GAMER | CREATOR</p>
+            <div style="font-size: 11px;">SYSTEM_STATUS: ACTIVE // USER: ARAAFGAMER17</div>
+            <h1>ARAAFGAMER17</h1>
+            <p>> CONTENT_STREAMING_NODE</p>
         </header>
 
         <div class="nav-grid">
@@ -159,16 +95,26 @@
             <a href="https://github.com/Araafgamer17" class="btn" target="_blank">[ GIT_REPOS ]</a>
         </div>
 
-        <div class="video-module">
-            <p style="text-align: left; margin: 0 0 10px 0;">// LATEST_TRANSMISSION.mp4</p>
-            <div class="video-wrapper">
-                <!-- I updated this to your most recent video (The Minecraft Speedrun) -->
-                <iframe src="https://www.youtube.com/embed/Z0X8pQp07Dk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-module">
+                <p style="text-align: left; margin: 5px 0; font-size: 12px;">// DATA_PACKET_01.mp4</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/fHZbiWXimeI" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-module">
+                <p style="text-align: left; margin: 5px 0; font-size: 12px;">// DATA_PACKET_02.mp4</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/vxf8md5blAA" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
 
         <footer>
-            TERMINAL_BOOT_SUCCESSFUL // © 2026 // <span id="clock">00:00:00</span>
+            TERMINAL_BOOT_SUCCESSFUL // © 2026 // <span id="clock">00:00:00</span> <span class="cursor">_</span>
         </footer>
     </div>
 
@@ -178,13 +124,13 @@
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const letters = "010101010101010101010101010101010101010101";
+        const letters = "0101010101010101010101";
         const fontSize = 14;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
         function drawMatrix() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#00ff41";
             ctx.font = fontSize + "px monospace";
@@ -197,7 +143,7 @@
         }
         setInterval(drawMatrix, 40);
 
-        // Live Clock
+        // Clock
         setInterval(() => {
             document.getElementById('clock').innerText = new Date().toLocaleTimeString();
         }, 1000);
