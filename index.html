@@ -7,9 +7,10 @@
     <style>
         :root {
             --neon-green: #00ff41;
-            --dark-bg: #0a0a0a;
+            --dark-bg: #050505;
             --glitch-red: #ff003c;
             --glitch-blue: #00f0ff;
+            --ui-border: rgba(0, 255, 65, 0.3);
         }
 
         body, html {
@@ -21,17 +22,16 @@
             overflow-x: hidden;
         }
 
-        /* Matrix Rain Canvas */
+        /* Matrix Rain Background */
         #matrix {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             z-index: -1;
-            opacity: 0.15;
+            opacity: 0.2;
         }
 
-        /* Scanline Overlay */
-        .scanlines {
+        /* Scanline & Flicker Effect */
+        .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
@@ -39,158 +39,155 @@
             background-size: 100% 3px, 3px 100%;
             pointer-events: none;
             z-index: 10;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            100% { opacity: 1; }
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 40px 20px;
             text-align: center;
         }
 
-        .header-box {
-            border: 2px solid var(--neon-green);
-            padding: 20px;
-            display: inline-block;
-            box-shadow: 0 0 15px var(--neon-green);
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            margin: 10px 0;
-            letter-spacing: 5px;
+        /* Header UI */
+        .terminal-header {
+            border: 1px solid var(--ui-border);
+            padding: 25px;
+            background: rgba(0, 10, 0, 0.85);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
             position: relative;
         }
 
-        .status-line {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-bottom: 5px;
+        .terminal-header::before {
+            content: "SYSTEM_STATUS: ENCRYPTED";
+            position: absolute;
+            top: -10px; left: 10px;
+            background: var(--dark-bg);
+            padding: 0 5px;
+            font-size: 10px;
         }
 
-        /* Glitch Animation */
-        .glitch:hover {
-            animation: glitch 0.2s infinite;
-            text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-blue);
+        h1 {
+            font-size: clamp(1.5rem, 8vw, 3rem);
+            margin: 10px 0;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px var(--neon-green);
         }
 
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            25% { transform: translate(-2px, 2px); }
-            50% { transform: translate(2px, -2px); }
-            75% { transform: translate(-1px, -1px); }
-            100% { transform: translate(0); }
-        }
-
-        .nav-links {
-            margin-top: 40px;
-            display: flex;
-            flex-direction: column;
+        /* Buttons */
+        .nav-grid {
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            align-items: center;
         }
 
         .btn {
             text-decoration: none;
             color: var(--neon-green);
             border: 1px solid var(--neon-green);
-            padding: 10px 30px;
-            width: 250px;
-            transition: all 0.3s;
-            background: transparent;
-            text-transform: uppercase;
+            padding: 12px;
             font-weight: bold;
+            transition: 0.2s;
+            background: rgba(0, 20, 0, 0.5);
+            display: block;
         }
 
         .btn:hover {
             background: var(--neon-green);
-            color: black;
-            box-shadow: 0 0 20px var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-green);
+            transform: scale(1.02);
         }
 
-        .btn-red {
-            border-color: #ff0000;
-            color: #ff0000;
-        }
-
-        .btn-red:hover {
-            background: #ff0000;
-            color: white;
-            box-shadow: 0 0 20px #ff0000;
-        }
-
-        .video-container {
-            margin-top: 50px;
-            border: 1px solid #333;
+        /* Video Frame */
+        .video-module {
+            border: 1px solid var(--ui-border);
+            padding: 15px;
             background: #000;
-            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            filter: sepia(20%) hue-rotate(80deg) brightness(1.1);
+        }
+
+        .glitch-text:hover {
+            animation: glitch-anim 0.3s infinite;
+        }
+
+        @keyframes glitch-anim {
+            0% { transform: skew(2deg); text-shadow: 2px 0 red; }
+            50% { transform: skew(-2deg); text-shadow: -2px 0 blue; }
+            100% { transform: skew(0); }
         }
 
         footer {
-            margin-top: 100px;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-        }
-
-        .cursor {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
+            margin-top: 50px;
+            font-size: 12px;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
 
     <canvas id="matrix"></canvas>
-    <div class="scanlines"></div>
+    <div class="overlay"></div>
 
     <div class="container">
-        <div class="header-box">
-            <div class="status-line">SYSTEM: ONLINE // USER: ARAAFGAMER17</div>
-            <h1 class="glitch">ARAAFGAMER17</h1>
-            <p>DEVELOPER | GAMER | CREATOR</p>
+        <header class="terminal-header">
+            <div style="font-size: 12px;">ID: ARAAFGAMER17 // LVL: 17</div>
+            <h1 class="glitch-text">ARAAFGAMER17</h1>
+            <p>> DEVELOPER | GAMER | CREATOR</p>
+        </header>
+
+        <div class="nav-grid">
+            <a href="https://youtube.com/@araafgamer17" class="btn" target="_blank">[ YT_CHANNEL ]</a>
+            <a href="https://github.com/Araafgamer17" class="btn" target="_blank">[ GIT_REPOS ]</a>
         </div>
 
-        <div class="nav-links">
-            <a href="https://youtube.com/@araafgamer17" class="btn btn-red">> VISIT_CHANNEL.EXE</a>
-            <a href="https://github.com/Araafgamer17" class="btn">> GITHUB_REPOS</a>
-            <div style="margin-top: 10px;">[ LEVEL 17 ACHIEVED ]<span class="cursor">_</span></div>
-        </div>
-
-        <div class="video-container">
-            <h3>// FEATURED_CONTENT</h3>
-            <!-- Replace YOUR_VIDEO_ID with your actual YouTube video ID -->
-            <iframe width="100%" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        <div class="video-module">
+            <p style="text-align: left; margin: 0 0 10px 0;">// LATEST_TRANSMISSION.mp4</p>
+            <div class="video-wrapper">
+                <!-- I updated this to your most recent video (The Minecraft Speedrun) -->
+                <iframe src="https://www.youtube.com/embed/Z0X8pQp07Dk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
 
         <footer>
-            ARAAFGAMER17 © 2026 // ALL_SYSTEMS_GO
+            TERMINAL_BOOT_SUCCESSFUL // © 2026 // <span id="clock">00:00:00</span>
         </footer>
     </div>
 
     <script>
-        // Matrix Rain Logic
+        // Matrix Rain
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
-        const fontSize = 16;
+        const letters = "010101010101010101010101010101010101010101";
+        const fontSize = 14;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
-        function draw() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "#00ff41";
             ctx.font = fontSize + "px monospace";
-
             for (let i = 0; i < drops.length; i++) {
                 const text = letters[Math.floor(Math.random() * letters.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -198,8 +195,12 @@
                 drops[i]++;
             }
         }
-        setInterval(draw, 33);
+        setInterval(drawMatrix, 40);
+
+        // Live Clock
+        setInterval(() => {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+        }, 1000);
     </script>
 </body>
-    </html>
-    
+</html>
