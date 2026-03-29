@@ -7,6 +7,7 @@
     <style>
         :root {
             --neon-green: #00ff41;
+            --cyber-blue: #00f0ff;
             --dark-bg: #050505;
             --ui-border: rgba(0, 255, 65, 0.3);
         }
@@ -19,8 +20,10 @@
             overflow-x: hidden;
         }
 
+        /* Matrix Rain Background */
         #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
 
+        /* CRT Scanline Overlay */
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
@@ -29,26 +32,57 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 30px 15px; text-align: center; }
 
+        /* Header UI */
         .terminal-header {
             border: 1px solid var(--ui-border);
             padding: 20px;
             background: rgba(0, 10, 0, 0.8);
             box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
             margin-bottom: 30px;
+            position: relative;
         }
 
         h1 { font-size: 2.5rem; letter-spacing: 5px; margin: 10px 0; text-shadow: 0 0 8px var(--neon-green); }
 
+        /* Navigation Grid */
         .nav-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px;
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            margin-bottom: 30px;
         }
 
         .btn {
-            text-decoration: none; color: var(--neon-green); border: 1px solid var(--neon-green);
-            padding: 10px; font-weight: bold; background: rgba(0, 20, 0, 0.5);
+            text-decoration: none; 
+            color: var(--neon-green); 
+            border: 1px solid var(--neon-green);
+            padding: 12px; 
+            font-weight: bold; 
+            background: rgba(0, 20, 0, 0.5);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
 
-        .btn:hover { background: var(--neon-green); color: #000; box-shadow: 0 0 15px var(--neon-green); }
+        .btn:hover { 
+            background: var(--neon-green); 
+            color: #000; 
+            box-shadow: 0 0 15px var(--neon-green); 
+        }
+
+        /* Specialized Eaglercraft Button */
+        .btn-eagler {
+            grid-column: 1 / -1; 
+            border-color: var(--cyber-blue); 
+            color: var(--cyber-blue);
+            text-shadow: 0 0 5px var(--cyber-blue);
+            margin-top: 5px;
+        }
+
+        .btn-eagler:hover {
+            background: var(--cyber-blue);
+            color: #000;
+            box-shadow: 0 0 20px var(--cyber-blue);
+        }
 
         /* Video Grid */
         .video-grid {
@@ -93,12 +127,17 @@
         <div class="nav-grid">
             <a href="https://youtube.com/@araafgamer17" class="btn" target="_blank">[ YT_CHANNEL ]</a>
             <a href="https://github.com/Araafgamer17" class="btn" target="_blank">[ GIT_REPOS ]</a>
+            
+            <!-- Eaglercraft Launcher -->
+            <a href="EaglercraftX_1.8_WASM-GC_Offline_Download.html" class="btn btn-eagler">
+                [ EXECUTE_EAGLERCRAFT_WASM_1.8 ]
+            </a>
         </div>
 
         <div class="video-grid">
             <!-- Video 1 -->
             <div class="video-module">
-                <p style="text-align: left; margin: 5px 0; font-size: 12px;">// DATA_PACKET_01.mp4</p>
+                <p style="text-align: left; margin: 5px 0; font-size: 12px; color: var(--neon-green);">// DATA_PACKET_01.mp4</p>
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/fHZbiWXimeI" frameborder="0" allowfullscreen></iframe>
                 </div>
@@ -106,7 +145,7 @@
 
             <!-- Video 2 -->
             <div class="video-module">
-                <p style="text-align: left; margin: 5px 0; font-size: 12px;">// DATA_PACKET_02.mp4</p>
+                <p style="text-align: left; margin: 5px 0; font-size: 12px; color: var(--neon-green);">// DATA_PACKET_02.mp4</p>
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/vxf8md5blAA" frameborder="0" allowfullscreen></iframe>
                 </div>
@@ -119,7 +158,7 @@
     </div>
 
     <script>
-        // Matrix Rain
+        // Matrix Rain Animation
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -143,10 +182,16 @@
         }
         setInterval(drawMatrix, 40);
 
-        // Clock
+        // System Clock
         setInterval(() => {
             document.getElementById('clock').innerText = new Date().toLocaleTimeString();
         }, 1000);
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
