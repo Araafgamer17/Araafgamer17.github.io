@@ -2,76 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AG17 // MC_SERVER_1.12.2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Server | Info</title>
     <style>
-        :root { --mc-green: #55FF55; --mc-gold: #FFAA00; --bg: #000; }
-        
-        body, html {
-            margin: 0; padding: 0; background: var(--bg);
-            color: #AAA; font-family: 'Courier New', monospace;
-            height: 100%; width: 100%; overflow: hidden;
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
         }
-
-        #console {
-            height: 100vh; width: 100vw;
-            padding: 20px; box-sizing: border-box;
-            overflow-y: auto; display: flex; flex-direction: column;
-            background: rgba(0,0,0,0.9);
+        .server-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
         }
-
-        .log { margin-bottom: 5px; font-size: 14px; line-height: 1.2; }
-        .time { color: #555; margin-right: 10px; }
-        .info { color: #55FFFF; }
-        .warn { color: var(--mc-gold); }
-        .success { color: var(--mc-green); }
-
-        /* Glowing Border */
-        #console::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            border: 2px solid #222; box-sizing: border-box; pointer-events: none;
+        .server-banner {
+            width: 100%;
+            height: 200px;
+            background: #21262d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #30363d;
         }
+        .server-banner img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        .content { padding: 25px; }
+        h1 { color: #58a6ff; margin-top: 0; }
+        .ip-box {
+            background: #0d1117;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px dashed #238636;
+            color: #3fb950;
+            font-family: monospace;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .rules-list {
+            padding-left: 20px;
+            color: #8b949e;
+        }
+        .rules-list li { margin-bottom: 8px; }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-btn:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
-    <div id="console">
-        <div class="log"><span class="time">[15:22:01]</span> [Server thread/INFO]: Starting minecraft server version 1.12.2</div>
-        <div class="log"><span class="time">[15:22:03]</span> [Server thread/INFO]: Loading properties...</div>
-        <div class="log"><span class="time">[15:22:03]</span> [Server thread/INFO]: Default game type: SURVIVAL</div>
-        <div class="log"><span class="time">[15:22:05]</span> [Server thread/INFO]: Generating keypair...</div>
-        <div class="log"><span class="time">[15:22:06]</span> [Server thread/INFO]: Starting Minecraft server on *:25565</div>
-        <div class="log"><span class="time">[15:22:08]</span> [Server thread/INFO]: Preparing level "world"</div>
-        <div class="log"><span class="time">[15:22:10]</span> [Server thread/INFO]: Preparing start region for level 0</div>
-        <div class="log success"><span class="time">[15:22:12]</span> [Server thread/INFO]: Done (11.2s)! For help, type "help" or "?"</div>
-        <div class="log"><span class="time">[15:22:15]</span> [Server thread/INFO]: <span class="success">AraafGamer17 joined the game</span></div>
+    <div class="server-card">
+        <div class="server-banner">
+            <img src="server-icon.png" alt="Server Picture">
+        </div>
+
+        <div class="content">
+            <h1>MC Server 1.12.2</h1>
+            
+            <div class="ip-box">
+                IP: play.example.com
+            </div>
+
+            <h3>📜 Server Rules</h3>
+            <ul class="rules-list">
+                <li>No griefing or stealing.</li>
+                <li>Respect all players in the chat.</li>
+                <li>No hacking or unfair client mods.</li>
+                <li>Have fun and build together!</li>
+            </ul>
+
+            <h3>ℹ️ Details</h3>
+            <p style="font-size: 0.9rem; color: #8b949e;">
+                Version: 1.12.2 <br>
+                Type: Survival / Creative
+            </p>
+
+            <a href="../index.html" class="back-btn">← Back to Hub</a>
+        </div>
     </div>
 
-<script>
-    const consoleBox = document.getElementById('console');
-
-    // Fake Live Logs
-    function addRandomLog() {
-        const times = new Date().toLocaleTimeString('en-GB', { hour12: false });
-        const events = [
-            "[Server thread/INFO]: Saved the world",
-            "[Server thread/WARN]: Can't keep up! Is the server overloaded?",
-            "[User Authenticator #1/INFO]: UUID of player AraafGamer17 is e17-0000-1717",
-            "[Server thread/INFO]: Preparing spawn area: 88%",
-            "[Server thread/INFO]: <AraafGamer17> System override initiated."
-        ];
-        
-        const logEntry = document.createElement('div');
-        logEntry.className = 'log';
-        const randomEvent = events[Math.floor(Math.random() * events.length)];
-        
-        logEntry.innerHTML = `<span class="time">[${times}]</span> ${randomEvent}`;
-        consoleBox.appendChild(logEntry);
-        consoleBox.scrollTop = consoleBox.scrollHeight;
-    }
-
-    setInterval(addRandomLog, 5000);
-</script>
-
 </body>
-                           </html>
+</html>
