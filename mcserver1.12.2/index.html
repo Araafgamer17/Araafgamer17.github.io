@@ -47,8 +47,19 @@
             color: #3fb950;
             font-family: monospace;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-size: 1.2rem;
+        }
+        .status-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
         }
         .rules-list {
             padding-left: 20px;
@@ -63,6 +74,29 @@
             font-size: 0.9rem;
         }
         .back-btn:hover { text-decoration: underline; }
+
+        /* Admin/Owner Section */
+        .admin-zone {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #30363d;
+            text-align: center;
+        }
+        .owner-btn {
+            background-color: #21262d;
+            color: #8b949e;
+            border: 1px solid #30363d;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .owner-btn:hover {
+            background-color: #30363d;
+            color: #58a6ff;
+        }
     </style>
 </head>
 <body>
@@ -76,7 +110,11 @@
             <h1>MC Server 1.12.2</h1>
             
             <div class="ip-box">
-                IP: Coming soom...
+                IP: Coming soon...
+            </div>
+
+            <div class="status-container">
+                <span id="status-badge">Checking...</span>
             </div>
 
             <h3>📜 Server Rules</h3>
@@ -94,8 +132,33 @@
             </p>
 
             <a href="../index.html" class="back-btn">← Back to Hub</a>
+
+            <div class="admin-zone">
+                <a href="https://github.com/Araafgamer17/Araafgamer17.github.io/edit/main/mcserver1.12.2/index.html" 
+                   class="owner-btn" 
+                   target="_blank">
+                    ⚙️ Owner Login (Edit Status)
+                </a>
+            </div>
         </div>
+
+        <div id="status-display" style="display:none;">yes</div>
     </div>
 
+    <script>
+        // Update the badge colors based on the switch
+        const statusVal = document.getElementById('status-display').innerText.trim();
+        const badge = document.getElementById('status-badge');
+        
+        if (statusVal === 'yes') {
+            badge.innerText = "● Online";
+            badge.style.background = "#238636";
+            badge.style.color = "#ffffff";
+        } else {
+            badge.innerText = "○ Offline";
+            badge.style.background = "#da3633";
+            badge.style.color = "#ffffff";
+        }
+    </script>
 </body>
 </html>
