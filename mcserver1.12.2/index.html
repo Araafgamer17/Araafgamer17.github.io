@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AG17 // MC_SERVER_1.12.2</title>
+    <style>
+        :root { --mc-green: #55FF55; --mc-gold: #FFAA00; --bg: #000; }
+        
+        body, html {
+            margin: 0; padding: 0; background: var(--bg);
+            color: #AAA; font-family: 'Courier New', monospace;
+            height: 100%; width: 100%; overflow: hidden;
+        }
+
+        #console {
+            height: 100vh; width: 100vw;
+            padding: 20px; box-sizing: border-box;
+            overflow-y: auto; display: flex; flex-direction: column;
+            background: rgba(0,0,0,0.9);
+        }
+
+        .log { margin-bottom: 5px; font-size: 14px; line-height: 1.2; }
+        .time { color: #555; margin-right: 10px; }
+        .info { color: #55FFFF; }
+        .warn { color: var(--mc-gold); }
+        .success { color: var(--mc-green); }
+
+        /* Glowing Border */
+        #console::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            border: 2px solid #222; box-sizing: border-box; pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="console">
+        <div class="log"><span class="time">[15:22:01]</span> [Server thread/INFO]: Starting minecraft server version 1.12.2</div>
+        <div class="log"><span class="time">[15:22:03]</span> [Server thread/INFO]: Loading properties...</div>
+        <div class="log"><span class="time">[15:22:03]</span> [Server thread/INFO]: Default game type: SURVIVAL</div>
+        <div class="log"><span class="time">[15:22:05]</span> [Server thread/INFO]: Generating keypair...</div>
+        <div class="log"><span class="time">[15:22:06]</span> [Server thread/INFO]: Starting Minecraft server on *:25565</div>
+        <div class="log"><span class="time">[15:22:08]</span> [Server thread/INFO]: Preparing level "world"</div>
+        <div class="log"><span class="time">[15:22:10]</span> [Server thread/INFO]: Preparing start region for level 0</div>
+        <div class="log success"><span class="time">[15:22:12]</span> [Server thread/INFO]: Done (11.2s)! For help, type "help" or "?"</div>
+        <div class="log"><span class="time">[15:22:15]</span> [Server thread/INFO]: <span class="success">AraafGamer17 joined the game</span></div>
+    </div>
+
+<script>
+    const consoleBox = document.getElementById('console');
+
+    // Fake Live Logs
+    function addRandomLog() {
+        const times = new Date().toLocaleTimeString('en-GB', { hour12: false });
+        const events = [
+            "[Server thread/INFO]: Saved the world",
+            "[Server thread/WARN]: Can't keep up! Is the server overloaded?",
+            "[User Authenticator #1/INFO]: UUID of player AraafGamer17 is e17-0000-1717",
+            "[Server thread/INFO]: Preparing spawn area: 88%",
+            "[Server thread/INFO]: <AraafGamer17> System override initiated."
+        ];
+        
+        const logEntry = document.createElement('div');
+        logEntry.className = 'log';
+        const randomEvent = events[Math.floor(Math.random() * events.length)];
+        
+        logEntry.innerHTML = `<span class="time">[${times}]</span> ${randomEvent}`;
+        consoleBox.appendChild(logEntry);
+        consoleBox.scrollTop = consoleBox.scrollHeight;
+    }
+
+    setInterval(addRandomLog, 5000);
+</script>
+
+</body>
+                           </html>
