@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARAAFGAMER17 // TERMINAL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ARAAFGAMER17 // OS</title>
     <style>
         :root {
             --neon-green: #00ff41;
             --cyber-blue: #00f0ff;
-            --dark-bg: #050505;
+            --dark-bg: #020202;
             --ui-border: rgba(0, 255, 65, 0.3);
         }
 
@@ -17,98 +17,89 @@
             background-color: var(--dark-bg);
             color: var(--neon-green);
             font-family: 'Courier New', Courier, monospace;
-            overflow-x: hidden;
+            height: 100%; width: 100%;
+            overflow: hidden;
         }
 
-        /* Matrix Rain Background */
+        /* Matrix Rain Backdrop */
         #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
 
-        /* CRT Scanline Overlay */
+        /* CRT Overlay */
         .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
             background-size: 100% 3px; pointer-events: none; z-index: 10;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 30px 15px; text-align: center; }
+        .container {
+            max-width: 600px; margin: 0 auto; padding: 40px 20px;
+            display: flex; flex-direction: column; height: 100vh;
+            justify-content: center; box-sizing: border-box;
+        }
 
-        /* Header UI */
         .terminal-header {
             border: 1px solid var(--ui-border);
             padding: 20px;
             background: rgba(0, 10, 0, 0.8);
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
-            margin-bottom: 30px;
-            position: relative;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
         }
 
-        h1 { font-size: 2.5rem; letter-spacing: 5px; margin: 10px 0; text-shadow: 0 0 8px var(--neon-green); }
+        h1 { font-size: 2rem; letter-spacing: 8px; margin: 0; text-shadow: 0 0 10px var(--neon-green); }
+        .status { font-size: 10px; color: #888; margin-top: 5px; }
 
-        /* Navigation Grid */
-        .nav-grid {
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
-            margin-bottom: 30px;
+        /* Big System Buttons */
+        .system-links {
+            display: flex; flex-direction: column; gap: 20px;
         }
 
-        .btn {
-            text-decoration: none; 
-            color: var(--neon-green); 
-            border: 1px solid var(--neon-green);
-            padding: 12px; 
-            font-weight: bold; 
-            background: rgba(0, 20, 0, 0.5);
-            transition: all 0.3s ease;
+        .big-btn {
+            text-decoration: none;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
             text-transform: uppercase;
+            border: 2px solid;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.6);
         }
 
-        .btn:hover { 
-            background: var(--neon-green); 
-            color: #000; 
-            box-shadow: 0 0 15px var(--neon-green); 
+        .btn-green {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.1);
         }
 
-        /* Specialized Eaglercraft Button */
-        .btn-eagler {
-            grid-column: 1 / -1; 
-            border-color: var(--cyber-blue); 
+        .btn-green:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 30px var(--neon-green);
+        }
+
+        .btn-blue {
+            border-color: var(--cyber-blue);
             color: var(--cyber-blue);
-            text-shadow: 0 0 5px var(--cyber-blue);
-            margin-top: 5px;
+            box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
         }
 
-        .btn-eagler:hover {
+        .btn-blue:hover {
             background: var(--cyber-blue);
             color: #000;
-            box-shadow: 0 0 20px var(--cyber-blue);
+            box-shadow: 0 0 30px var(--cyber-blue);
         }
 
-        /* Video Grid */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            padding-top: 20px;
         }
 
-        .video-module {
-            border: 1px solid var(--ui-border);
-            padding: 10px;
-            background: #000;
-            position: relative;
-        }
-
-        .video-module::before {
-            content: "SECURE_STREAM_LN";
-            position: absolute; top: -10px; left: 10px;
-            background: var(--dark-bg); padding: 0 5px; font-size: 10px;
-        }
-
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        footer { margin-top: 50px; font-size: 12px; opacity: 0.6; padding-bottom: 20px; }
-        .cursor { animation: blink 1s infinite; }
+        .blink { animation: blink 1s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
@@ -119,50 +110,30 @@
 
     <div class="container">
         <header class="terminal-header">
-            <div style="font-size: 11px;">SYSTEM_STATUS: ACTIVE // USER: ARAAFGAMER17</div>
-            <h1>ARAAFGAMER17</h1>
-            <p>> CONTENT_STREAMING_NODE</p>
+            <h1>AG17_V-OS</h1>
+            <div class="status">ENCRYPTION: AES-256 // USER: ROOT_ARAAF</div>
         </header>
 
-        <div class="nav-grid">
-            <a href="https://youtube.com/@araafgamer17" class="btn" target="_blank">[ YT_CHANNEL ]</a>
-            <a href="https://github.com/Araafgamer17" class="btn" target="_blank">[ GIT_REPOS ]</a>
-            
-            <!-- Eaglercraft Launcher -->
-            <a href="EaglercraftX_1.8_WASM-GC_Offline_Download.html" class="btn btn-eagler">
-                [ EXECUTE_EAGLERCRAFT_WASM_1.8 ]
+        <nav class="system-links">
+            <a href="cmd.html" class="big-btn btn-green">
+                [ RUN_SYSTEM_CMD ]
             </a>
-        </div>
 
-        <div class="video-grid">
-            <!-- Video 1 -->
-            <div class="video-module">
-                <p style="text-align: left; margin: 5px 0; font-size: 12px; color: var(--neon-green);">// DATA_PACKET_01.mp4</p>
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/fHZbiWXimeI" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <!-- Video 2 -->
-            <div class="video-module">
-                <p style="text-align: left; margin: 5px 0; font-size: 12px; color: var(--neon-green);">// DATA_PACKET_02.mp4</p>
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/vxf8md5blAA" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
+            <a href="EaglercraftX_1.8_WASM-GC_Offline_Download.html" class="big-btn btn-blue">
+                [ EXECUTE_EAGLERCRAFT ]
+            </a>
+        </nav>
 
         <footer>
-            TERMINAL_BOOT_SUCCESSFUL // © 2026 // <span id="clock">00:00:00</span> <span class="cursor">_</span>
+            CONNECTION_STABLE // SYSTEM_TIME: <span id="clock">00:00:00</span> <span class="blink">_</span>
         </footer>
     </div>
 
     <script>
-        // Matrix Rain Animation
+        // Matrix Rain
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
         const letters = "0101010101010101010101";
         const fontSize = 14;
         const columns = canvas.width / fontSize;
@@ -182,12 +153,11 @@
         }
         setInterval(drawMatrix, 40);
 
-        // System Clock
+        // Clock
         setInterval(() => {
             document.getElementById('clock').innerText = new Date().toLocaleTimeString();
         }, 1000);
 
-        // Handle Window Resize
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
