@@ -25,7 +25,7 @@
         }
         .server-banner {
             width: 100%;
-            height: 200px;
+            height: 180px;
             background: #21262d;
             display: flex;
             align-items: center;
@@ -38,44 +38,41 @@
             object-fit: cover;
         }
         .content { padding: 25px; }
-        h1 { color: #58a6ff; margin-top: 0; }
+        h1 { color: #58a6ff; margin: 0 0 15px 0; font-size: 1.5rem; }
+        
         .ip-box {
             background: #0d1117;
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
             border: 1px dashed #238636;
             color: #3fb950;
-            font-family: monospace;
+            font-family: 'Courier New', Courier, monospace;
             text-align: center;
             margin-bottom: 10px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
-        .status-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+
         #status-badge {
+            display: inline-block;
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: bold;
             text-transform: uppercase;
+            margin-bottom: 20px;
         }
-        .rules-list {
-            padding-left: 20px;
-            color: #8b949e;
-        }
+
+        .rules-list { padding-left: 20px; color: #8b949e; font-size: 0.95rem; }
         .rules-list li { margin-bottom: 8px; }
+        
         .back-btn {
             display: inline-block;
             margin-top: 20px;
             color: #58a6ff;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
-        .back-btn:hover { text-decoration: underline; }
 
-        /* Admin/Owner Section */
         .admin-zone {
             margin-top: 30px;
             padding-top: 15px;
@@ -86,16 +83,17 @@
             background-color: #21262d;
             color: #8b949e;
             border: 1px solid #30363d;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.75rem;
             text-decoration: none;
+            font-size: 0.8rem;
             display: inline-block;
+            transition: 0.2s;
         }
         .owner-btn:hover {
             background-color: #30363d;
             color: #58a6ff;
+            border-color: #58a6ff;
         }
     </style>
 </head>
@@ -103,61 +101,50 @@
 
     <div class="server-card">
         <div class="server-banner">
-            <img src="server-icon.png" alt="Server Picture">
+            <img src="server-icon.png" alt="Server Image">
         </div>
 
         <div class="content">
             <h1>MC Server 1.12.2</h1>
             
-            <div class="ip-box">
-                IP: Coming soon...
-            </div>
-
-            <div class="status-container">
+            <div class="ip-box">IP: Coming soon...</div>
+            
+            <div style="text-align: center;">
                 <span id="status-badge">Checking...</span>
             </div>
 
             <h3>📜 Server Rules</h3>
             <ul class="rules-list">
                 <li>No griefing or stealing.</li>
-                <li>Respect all players in the chat.</li>
-                <li>No hacking or unfair client mods.</li>
-                <li>Have fun and build together!</li>
+                <li>Respect all players.</li>
+                <li>No hacking/cheating.</li>
             </ul>
-
-            <h3>ℹ️ Details</h3>
-            <p style="font-size: 0.9rem; color: #8b949e;">
-                Version: 1.12.2 <br>
-                Type: Survival
-            </p>
 
             <a href="../index.html" class="back-btn">← Back to Hub</a>
 
             <div class="admin-zone">
                 <a href="https://github.com/Araafgamer17/Araafgamer17.github.io/edit/main/mcserver1.12.2/index.html" 
-                   class="owner-btn" 
-                   target="_blank">
-                    ⚙️ Owner Login (Edit Status)
+                   class="owner-btn" target="_blank">
+                    ⚙️ OPEN OWNER CONSOLE
                 </a>
             </div>
         </div>
 
-        <div id="status-display" style="display:none;">yes</div>
+        <div id="status-display" style="display:none;">SERVER_STATUS: yes</div>
     </div>
 
     <script>
-        // Update the badge colors based on the switch
-        const statusVal = document.getElementById('status-display').innerText.trim();
+        const statusText = document.getElementById('status-display').innerText;
         const badge = document.getElementById('status-badge');
-        
-        if (statusVal === 'yes') {
-            badge.innerText = "● Online";
+
+        if (statusText.includes('yes')) {
+            badge.innerText = "● ONLINE";
             badge.style.background = "#238636";
-            badge.style.color = "#ffffff";
+            badge.style.color = "white";
         } else {
-            badge.innerText = "○ Offline";
+            badge.innerText = "○ OFFLINE";
             badge.style.background = "#da3633";
-            badge.style.color = "#ffffff";
+            badge.style.color = "white";
         }
     </script>
 </body>
