@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ARAAFGAMER17 // OS</title>
+    <title>ARAAFGAMER17 // OS_HUB</title>
     <style>
         :root {
             --neon-green: #00ff41;
             --cyber-blue: #00f0ff;
+            --mc-green: #55FF55;
             --dark-bg: #020202;
             --ui-border: rgba(0, 255, 65, 0.3);
         }
@@ -22,7 +23,7 @@
         }
 
         /* Matrix Rain Backdrop */
-        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+        #matrix { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.12; }
 
         /* CRT Overlay */
         .overlay {
@@ -32,7 +33,7 @@
         }
 
         .container {
-            max-width: 600px; margin: 0 auto; padding: 40px 20px;
+            max-width: 650px; margin: 0 auto; padding: 30px 20px;
             display: flex; flex-direction: column; height: 100vh;
             justify-content: center; box-sizing: border-box;
         }
@@ -40,54 +41,70 @@
         .terminal-header {
             border: 1px solid var(--ui-border);
             padding: 20px;
-            background: rgba(0, 10, 0, 0.8);
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-            margin-bottom: 40px;
+            background: rgba(0, 10, 0, 0.85);
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.15);
+            margin-bottom: 30px;
             text-align: center;
+            position: relative;
         }
 
-        h1 { font-size: 2rem; letter-spacing: 8px; margin: 0; text-shadow: 0 0 10px var(--neon-green); }
-        .status { font-size: 10px; color: #888; margin-top: 5px; }
+        .terminal-header::before {
+            content: "SECURE_ACCESS_PORTAL";
+            position: absolute; top: -10px; left: 10px;
+            background: var(--dark-bg); padding: 0 8px; font-size: 10px; color: #888;
+        }
 
-        /* Big System Buttons */
+        h1 { font-size: clamp(1.5rem, 8vw, 2.2rem); letter-spacing: 6px; margin: 0; text-shadow: 0 0 10px var(--neon-green); }
+
+        /* Navigation Grid */
         .system-links {
-            display: flex; flex-direction: column; gap: 20px;
+            display: flex; flex-direction: column; gap: 15px;
         }
 
         .big-btn {
             text-decoration: none;
-            padding: 20px;
+            padding: 18px;
             text-align: center;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            border: 2px solid;
+            border: 1px solid;
             transition: all 0.3s ease;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
         }
 
+        /* Terminal Button */
         .btn-green {
             border-color: var(--neon-green);
             color: var(--neon-green);
-            box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.1);
         }
-
         .btn-green:hover {
             background: var(--neon-green);
             color: #000;
-            box-shadow: 0 0 30px var(--neon-green);
+            box-shadow: 0 0 25px var(--neon-green);
         }
 
+        /* Eaglercraft Button */
         .btn-blue {
             border-color: var(--cyber-blue);
             color: var(--cyber-blue);
-            box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
         }
-
         .btn-blue:hover {
             background: var(--cyber-blue);
             color: #000;
-            box-shadow: 0 0 30px var(--cyber-blue);
+            box-shadow: 0 0 25px var(--cyber-blue);
+        }
+
+        /* MC Server Button */
+        .btn-mc {
+            border-color: var(--mc-green);
+            color: var(--mc-green);
+        }
+        .btn-mc:hover {
+            background: var(--mc-green);
+            color: #000;
+            box-shadow: 0 0 25px var(--mc-green);
         }
 
         footer {
@@ -95,11 +112,11 @@
             text-align: center;
             font-size: 10px;
             letter-spacing: 2px;
-            opacity: 0.5;
-            padding-top: 20px;
+            opacity: 0.6;
+            padding-top: 25px;
         }
 
-        .blink { animation: blink 1s infinite; }
+        .cursor-blink { animation: blink 1s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
@@ -110,27 +127,31 @@
 
     <div class="container">
         <header class="terminal-header">
-            <h1>AG17_V-OS</h1>
-            <div class="status">ENCRYPTION: AES-256 // USER: ROOT_ARAAF</div>
+            <h1>ARAAFGAMER17_OS</h1>
+            <div style="font-size: 10px; margin-top: 5px; color: var(--neon-green);">CONNECTED: HOST_01 // LVL_17</div>
         </header>
 
         <nav class="system-links">
             <a href="cmd.html" class="big-btn btn-green">
-                [ RUN_SYSTEM_CMD ]
+                [ RUN_SYSTEM_TERMINAL ]
+            </a>
+
+            <a href="mcserver1.12.2/" class="big-btn btn-mc">
+                [ CONNECT_TO_MC_SERVER_1.12.2 ]
             </a>
 
             <a href="EaglercraftX_1.8_WASM-GC_Offline_Download.html" class="big-btn btn-blue">
-                [ EXECUTE_EAGLERCRAFT ]
+                [ EXECUTE_EAGLERCRAFT_WASM ]
             </a>
         </nav>
 
         <footer>
-            CONNECTION_STABLE // SYSTEM_TIME: <span id="clock">00:00:00</span> <span class="blink">_</span>
+            ALL_SYSTEMS_OPERATIONAL // <span id="clock">00:00:00</span> <span class="cursor-blink">_</span>
         </footer>
     </div>
 
     <script>
-        // Matrix Rain
+        // Matrix Rain Visualizer
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth; canvas.height = window.innerHeight;
@@ -153,11 +174,12 @@
         }
         setInterval(drawMatrix, 40);
 
-        // Clock
+        // System Clock Function
         setInterval(() => {
             document.getElementById('clock').innerText = new Date().toLocaleTimeString();
         }, 1000);
 
+        // Adjust canvas on resize
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
