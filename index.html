@@ -1,11 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- This instantly sends visitors to your launcher page -->
-    <meta http-equiv="refresh" content="0; url=https://araafgamer17.github.io/launcher">
-    <title>Redirecting...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Hub Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p>If you are not redirected, <a href="https://araafgamer17.github.io/launcher">click here</a>.</p>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">HUB_LAUNCHER</div>
+      <nav class="nav-links">
+        <a href="#" class="active">Discover</a>
+        <a href="#">Library</a>
+        <a href="#">Downloads</a>
+        <a href="#">Settings</a>
+      </nav>
+      <div class="user-profile">
+        <div class="avatar"></div>
+        <span class="username">DevMode</span>
+      </div>
+    </header>
+
+    <div class="app-body">
+      <aside class="app-sidebar">
+        <div class="sidebar-section">
+          <h3>My Workspace</h3>
+          <ul class="sidebar-menu">
+            <li class="active">All Projects</li>
+            <li>Installed</li>
+            <li>Updates <span class="badge-count">2</span></li>
+          </ul>
+        </div>
+        <div class="sidebar-section">
+          <h3>Platforms</h3>
+          <ul class="sidebar-menu">
+            <li>Web Apps</li>
+            <li>Desktop Tools</li>
+            <li>Server Scripts</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="app-content">
+        <div class="content-header">
+          <h2>Featured Applications</h2>
+          <span class="results-count">Showing 6 Projects</span>
+        </div>
+        
+        <div class="content-grid">
+          
+          <div class="project-card">
+            <div class="card-media" style="background-image: url('https://picsum.photos/400/200?random=1');"></div>
+            <div class="card-details">
+              <h4>System Optimizer v4</h4>
+              <p>Advanced diagnostic metrics window tool utilizing multi-threaded analysis pipelines.</p>
+              <span class="status-badge success">Ready</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="card-media" style="background-image: url('https://picsum.photos/400/200?random=2');"></div>
+            <div class="card-details">
+              <h4>Database Core Link</h4>
+              <p>Visual database administrator GUI mapping local relationships in real-time.</p>
+              <span class="status-badge warning">Updating</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="card-media" style="background-image: url('https://picsum.photos/400/200?random=3');"></div>
+            <div class="card-details">
+              <h4>Neoterm Simulator</h4>
+              <p>Hardware accelerated workspace environment simulating classic shell layouts.</p>
+              <span class="status-badge success">Ready</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="card-media" style="background-image: url('https://picsum.photos/400/200?random=4');"></div>
+            <div class="card-details">
+              <h4>API Endpoint Sentinel</h4>
+              <p>Background network ping environment verifying live response metrics across services.</p>
+              <span class="status-badge success">Ready</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="card-media" style="background-image: url('https://picsum.photos/400/200?random=5');"></div>
+            <div class="card-details">
+              <h4>Asset Pipeline Engine</h4>
+              <p>Automated vector asset compiler and media optimization array workspace.</p>
+              <span class="status-badge danger">Offline</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="card-media" style="background-image: url('https://picsum.photos/400/200?random=6');"></div>
+            <div class="card-details">
+              <h4>Crypto Engine Module</h4>
+              <p>Cryptographic key manager dashboard managing authorization tokens locally.</p>
+              <span class="status-badge success">Ready</span>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
 </body>
 </html>
