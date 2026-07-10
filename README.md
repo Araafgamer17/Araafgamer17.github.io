@@ -1,2 +1,2 @@
 # Araafgamer17.github.io
-Shortcuts
+no idea
