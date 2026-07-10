@@ -1,1 +1,276 @@
+/* ==========================================
+   GITHUB DARK DESIGN TOKEN CONFIGURATION
+   ========================================== */
+:root {
+  --bg-main: #0d1117;
+  --bg-surface: #161b22;
+  --border-default: #30363d;
+  --text-primary: #e6edf3;
+  --text-muted: #8d96a0;
+  --accent-blue: #2f81f7;
+  --accent-green: #238636;
+  --accent-orange: #d29922;
+  --accent-red: #f85149;
+}
 
+/* Global Reset Architecture */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  height: 100vh;
+  overflow: hidden; /* Disables standard web browser level viewport scrolling */
+}
+
+/* ==========================================
+   APPLICATION MASTER PANELS
+   ========================================== */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Fixed Top Global Navigation Header */
+.app-header {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-links a.active {
+  color: var(--text-primary);
+  background-color: rgba(240, 246, 252, 0.1);
+}
+
+.nav-links a:hover:not(.active) {
+  color: var(--text-primary);
+  background-color: rgba(240, 246, 252, 0.05);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--accent-blue);
+  border: 1px solid var(--border-default);
+}
+
+.username {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* App View Split View Frame */
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* Locks Navigation and Left Menu securely in geometric position */
+}
+
+/* ==========================================
+   SIDEBAR ARCHITECTURE
+   ========================================== */
+.app-sidebar {
+  width: 260px;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-default);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-section h3 {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding-left: 8px;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-menu {
+  list-style: none;
+}
+
+.sidebar-menu li {
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-menu li.active {
+  background-color: rgba(240, 246, 252, 0.1);
+  font-weight: 600;
+}
+
+.sidebar-menu li:hover:not(.active) {
+  background-color: rgba(240, 246, 252, 0.05);
+}
+
+.badge-count {
+  background-color: var(--border-default);
+  color: var(--text-muted);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   CONTENT DYNAMIC GRID DISPLAY AREA
+   ========================================== */
+.app-content {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto; /* Activates vertical application scrolling exclusively down this layout row */
+  background-color: var(--bg-main);
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-default);
+  padding-bottom: 16px;
+}
+
+.content-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.results-count {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ==========================================
+   PREMIUM APPLICATION CARD SYSTEM
+   ========================================== */
+.project-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, transform 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.project-card:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.card-media {
+  height: 150px;
+  background-color: var(--bg-main);
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.card-details {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-details h4 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-details p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex: 1; /* Pushes the status badge cleanly down to the bottom footer */
+}
+
+/* Contextual Status Badges */
+.status-badge {
+  align-self: flex-start;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 2em;
+  font-weight: 600;
+}
+
+.status-badge.success {
+  background-color: rgba(35, 134, 54, 0.15);
+  color: #56d364;
+  border: 1px solid rgba(53, 238, 95, 0.3);
+}
+
+.status-badge.warning {
+  background-color: rgba(187, 128, 9, 0.15);
+  color: #e3b341;
+  border: 1px solid rgba(227, 179, 65, 0.3);
+}
+
+.status-badge.danger {
+  background-color: rgba(248, 81, 73, 0.1);
+  color: #ff7b72;
+  border: 1px solid rgba(248, 81, 73, 0.2);
+  }
